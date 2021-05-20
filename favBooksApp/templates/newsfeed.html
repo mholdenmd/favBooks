@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+	</style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome, {{Pickachu.first_name}} for you are the last Air Bender!!!</h1>
+    <h1>Add Favotie Book</h1>
+        <form action="/addNewBook" method="post">
+            {% csrf_token %}
+            <p>Title:<input type="text" name="tt"></p>
+            <p>Description:<textarea type="text" name="desc" cols="20" rows="5"></textarea></p>
+            <button value="Add Book">Add Book</button>
+    
+        </form>
+    
+    
+    <h1>All Books</h1>
+    {% for bookobj in booklist %}
+    <a href="/books/{{bookobj.id}}">{{bookobj.title}}</a> 
+    <p>{{bookobj.desc}}</p>
+    <p>{{bookobj.uploaded_by}}</p>
+    {% endfor %}
+<form action="" method="POST">
+    <a href="/books/{{bookobj.id}}/liked">Add to Favorites</a>
+</form>
+
+
+    <a href="/logout">Log out</a>
+</body>
+</html>
